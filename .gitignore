@@ -1,0 +1,159 @@
+
+# ============================================================
+# BU Robotics Club — Telemetry Hub
+# .gitignore
+# ============================================================
+
+# ------------------------------------------------------------
+# Python
+# ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.prof
+
+# ------------------------------------------------------------
+# C / C++ / CMake
+# ------------------------------------------------------------
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Testing/
+cmake-build-*/
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.dylib
+*.exe
+
+# ------------------------------------------------------------
+# Environment variables and secrets
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+secrets/
+credentials/
+
+# ------------------------------------------------------------
+# PostgreSQL / Database
+# ------------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# Local database storage and dumps
+postgres_data/
+pgdata/
+db_data/
+*.dump
+*.sql.gz
+*.backup
+
+# ------------------------------------------------------------
+# Telemetry data and local storage
+# ------------------------------------------------------------
+data/
+telemetry_data/
+storage/
+uploads/
+exports/
+*.parquet
+*.arrow
+*.feather
+
+# ------------------------------------------------------------
+# Logs and runtime artifacts
+# ------------------------------------------------------------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.pid
+*.pid.lock
+*.sock
+
+# ------------------------------------------------------------
+# Docker / Containers
+# ------------------------------------------------------------
+.docker/
+docker-data/
+docker-volumes/
+*.tar
+
+# ------------------------------------------------------------
+# IDEs and editors
+# ------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ------------------------------------------------------------
+# Operating systems
+# ------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ------------------------------------------------------------
+# Jupyter
+# ------------------------------------------------------------
+.ipynb_checkpoints/
+
+# ------------------------------------------------------------
+# Local caches
+# ------------------------------------------------------------
+.cache/
+.cache-*/
+.pyre/
+.pytype/
+.pybuilder/
