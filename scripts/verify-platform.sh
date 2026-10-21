@@ -22,8 +22,8 @@ fi
 
 # Check Python version
 expected_python="3.14"
-actual_python_major="$(python3 -c 'import sys; print(sys.version_info.major)')"
-actual_python_minor="$(python3 -c 'import sys; print(sys.version_info.minor)')"
+actual_python_major="$(uv run python -c 'import sys; print(sys.version_info.major)')"
+actual_python_minor="$(uv run python -c 'import sys; print(sys.version_info.minor)')"
 
 if [[ "${actual_python_major}.${actual_python_minor}" == "$expected_python" ]]; then
     echo -e "${GREEN}[PASS]${NC} Python ${expected_python} confirmed."
@@ -37,13 +37,13 @@ fi
 REQUIRED_DEPENDENCIES=(git)
 
 confirm_dependency_present() {
-    dependency="$1"
-    dependency_status="$(command -v $dependency)"
-    if [[ -z "$dependency_status" ]]; then
-        echo "${RED}[FAIL] ${dependency} not found.${NC}"
-        exit 1
-    else 
+    local dependency="$1"
+
+    if command -v "$dependency" >/dev/null 2>&1; then
         echo -e "${GREEN}[PASS]${NC} ${dependency} confirmed."
+    else
+        echo -e "${RED}[FAIL]${NC} ${dependency} not found."
+        exit 1
     fi
 }
 
@@ -83,5 +83,3 @@ else
     echo -e "${RED}[FAIL] expected ${expected_pyright}, got ${actual_pyright}${NC}."
     exit 1
 fi 
-
-# 
