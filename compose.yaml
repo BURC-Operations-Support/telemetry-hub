@@ -11,5 +11,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql
 
+  dev:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    environment:
+      - UV_PROJECT_ENVIRONMENT="/opt/venv"
+    stdin_open: true
+    tty: true
+    command: ["bash", "-c", "uv sync --locked && exec sleep infinity"] # will add API startup command once architecture is confirmed
+
+
 volumes:
   postgres_data:
