@@ -1,7 +1,7 @@
 .PHONY: setup test lint format check
 
 setup:
-	uv sync
+	uv sync --locked
 
 test:
 	uv run pytest

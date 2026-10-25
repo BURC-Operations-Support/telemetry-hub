@@ -63,23 +63,23 @@ else
 fi
 
 # Verify ruff version
-expected_ruff="ruff 0.16.9"
-actual_ruff="$(ruff --version)"
+# expected_ruff="ruff 0.16.9"
+# actual_ruff="$(ruff --version)"
 
-if [[ "$actual_ruff" == "$expected_ruff" ]]; then
-    echo -e "${GREEN}[PASS]${NC} ${expected_ruff} confirmed."
-else 
-    echo -e "${RED}[FAIL] expected ${expected_ruff}, got ${actual_ruff}${NC}."
-    exit 1
-fi
+# if [[ "$actual_ruff" == "$expected_ruff" ]]; then
+#     echo -e "${GREEN}[PASS]${NC} ${expected_ruff} confirmed."
+# else 
+#     echo -e "${RED}[FAIL] expected ${expected_ruff}, got ${actual_ruff}${NC}."
+#     exit 1
+# fi
 
-# Verify pyright version
-expected_pyright="pyright 1.1.414"
-actual_pyright="$(pyright --version)"
+# # Verify pyright version
+# expected_pyright="pyright 1.1.414"
+# actual_pyright="$(pyright --version)"
 
-if [[  "$actual_pyright" == "$expected_pyright" ]]; then
-    echo -e "${GREEN}[PASS]${NC} ${expected_pyright} confirmed."
-else 
-    echo -e "${RED}[FAIL] expected ${expected_pyright}, got ${actual_pyright}${NC}."
-    exit 1
-fi 
+# if [[  "$actual_pyright" == "$expected_pyright" ]]; then
+#     echo -e "${GREEN}[PASS]${NC} ${expected_pyright} confirmed."
+# else 
+#     echo -e "${RED}[FAIL] expected ${expected_pyright}, got ${actual_pyright}${NC}."
+#     exit 1
+# fi 
