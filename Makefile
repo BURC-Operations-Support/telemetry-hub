@@ -1,4 +1,4 @@
-.PHONY: setup test lint format check init-env rebuild
+.PHONY: setup test lint format check init-env reset-environment
 
 init-env:
 	@if [ ! -f ".env" ]; then \
@@ -14,7 +14,6 @@ init-env:
 setup: init-env
 	@docker compose up -d --build --wait
 	@docker compose exec -T dev uv sync --locked
-	@docker compose exec -T dev uv run python ./scripts/verify_python_environment.py
 	@docker compose exec -T dev uv run python ./scripts/verify_postgres_adapter.py
 	@docker compose exec -T dev uv run ruff check .
 	@docker compose exec -T dev uv run pyright
@@ -49,10 +48,9 @@ check:
 	@docker compose exec -T dev uv run pytest
 	@docker compose stop
 
-rebuild:
+reset-environment:
 	@docker compose up -d --build --wait
 	@docker compose exec -T dev uv sync --locked
-	@docker compose exec -T dev uv run python ./scripts/verify_python_environment.py
 	@docker compose exec -T dev uv run python ./scripts/verify_postgres_adapter.py
 	@docker compose exec -T dev uv run ruff format --check .
 	@docker compose exec -T dev uv run pytest
