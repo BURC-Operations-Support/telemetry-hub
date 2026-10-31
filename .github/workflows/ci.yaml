@@ -25,3 +25,10 @@ jobs:
           docker compose version
       - name: ci-checks
         run: make ci
+      - name: store-wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: telemetryhub-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
