@@ -1,4 +1,4 @@
-.PHONY: setup test lint format check init-env reset-environment verify-build
+.PHONY: setup test lint format check init-env reset-environment verify-build ci
 
 init-env:
 	@if [ ! -f ".env" ]; then \
@@ -61,6 +61,26 @@ reset-environment:
 verify-build:
 	@docker compose up -d --wait
 	@docker compose exec -T dev uv sync --locked
+	@docker compose exec -T dev rm -rf dist /tmp/whl-test
+	@docker compose exec -T dev uv venv /tmp/whl-test
+	@docker compose exec -T dev uv build
+	@docker compose exec -T dev sh -c \
+		'uv pip install --python /tmp/whl-test/bin/python dist/*.whl'
+	@docker compose exec -T -w /tmp dev \
+		/tmp/whl-test/bin/python -c "import telemetryhub"
+	@docker compose exec -T -w /tmp dev \
+		/tmp/whl-test/bin/telemetryhub
+	@docker compose exec -T dev rm -rf /tmp/whl-test
+	@docker compose stop
+
+ci: init-env
+	@docker compose up -d --build --wait
+	@docker compose exec -T dev uv sync --locked
+	@docker compose exec -T dev uv run python ./scripts/verify_postgres_adapter.py
+	@docker compose exec -T dev uv run pytest
+	@docker compose exec -T dev uv run ruff check .
+	@docker compose exec -T dev uv run pyright
+	@docker compose exec -T dev uv run ruff format --check .
 	@docker compose exec -T dev rm -rf dist /tmp/whl-test
 	@docker compose exec -T dev uv venv /tmp/whl-test
 	@docker compose exec -T dev uv build

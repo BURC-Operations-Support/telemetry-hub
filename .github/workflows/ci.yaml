@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs: 
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check-out-repo
+        uses: actions/checkout@v4
+
+      - name: verify-runner
+        run: |
+          pwd
+          ls -la
+          docker --version
+          docker compose version
+      - name: ci-checks
+        run: make ci
+      - name: store-wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: telemetryhub-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
