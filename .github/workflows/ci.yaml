@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+  pull-request:
+
+permissions:
+  contents: read
+
+jobs: 
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check-out-repo
+        uses: actions/checkout@v4
+
+      - name: verify-runner
+        run: |
+          pwd
+          ls -la
+          docker --version
+          docker compose version
