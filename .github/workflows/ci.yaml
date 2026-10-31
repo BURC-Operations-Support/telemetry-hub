@@ -2,6 +2,8 @@ name: ci
 
 on:
   push:
+    branches:
+      - main
   pull_request:
 
 permissions:
@@ -21,3 +23,5 @@ jobs:
           ls -la
           docker --version
           docker compose version
+      - name: ci-checks
+        run: make ci
