@@ -1,7 +1,6 @@
-
 """
 Telemetry Hub application entrypoint.
-Currently an unimplemented stub used to verify CI/CD lifecycle. 
+Currently an unimplemented stub used to verify CI/CD lifecycle.
 """
 
 import logging
