@@ -29,6 +29,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.12.19 /uv /uvx /usr/local/bin/
 
 ENV UV_PROJECT_ENVIRONMENT="/opt/venv"
 ENV UV_PYTHON_INSTALL_DIR="/opt/python"
+ENV TELEMETRY_BUILD_PROFILE="development"
 
 RUN uv python install 3.14
 
@@ -76,6 +77,7 @@ COPY --from=builder /opt/python /opt/python
 COPY --from=builder /opt/venv /opt/venv
 
 ENV PATH="/opt/venv/bin:$PATH"
+ENV TELEMETRY_BUILD_PROFILE="production"
 
 RUN useradd --system --no-create-home --shell /usr/sbin/nologin telemetry
 
